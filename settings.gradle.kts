@@ -1,5 +1,5 @@
 rootProject.name = "KDS-DayaCore"
-include(":core")
+include(":core-test")
 include(":composeApp")
 
 pluginManagement {
