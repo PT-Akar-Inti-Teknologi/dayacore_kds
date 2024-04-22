@@ -8,9 +8,6 @@ plugins {
 }
 
 val packageName = "app.dayacore.kds"
-dependencies {
-    "commonMainApi"(project(":core-test"))
-}
 
 kotlin {
     jvm()
@@ -49,6 +46,10 @@ kotlin {
         }
 
     }
+}
+
+dependencies {
+    "commonMainApi"(project(":core"))
 }
 
 compose.desktop {
