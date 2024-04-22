@@ -34,8 +34,6 @@ import androidx.compose.ui.unit.dp
 import app.dayacore.kds.theme.getTypography
 import app.dayacore.theme.AppTheme
 import app.dayacore.theme.LocalThemeIsDark
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 import kds_dayacore.composeapp.generated.resources.Res
 import kds_dayacore.composeapp.generated.resources.cyclone
 import kds_dayacore.composeapp.generated.resources.ic_cyclone
@@ -46,6 +44,8 @@ import kds_dayacore.composeapp.generated.resources.open_github
 import kds_dayacore.composeapp.generated.resources.run
 import kds_dayacore.composeapp.generated.resources.stop
 import kds_dayacore.composeapp.generated.resources.theme
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun App() = AppTheme(
@@ -115,7 +115,7 @@ internal fun App() = AppTheme(
 
         TextButton(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).widthIn(min = 200.dp),
-            onClick = {  },
+            onClick = { },
         ) {
             Text(stringResource(Res.string.open_github))
         }

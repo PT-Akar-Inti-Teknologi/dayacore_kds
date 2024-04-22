@@ -7,7 +7,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import org.jetbrains.compose.resources.Font
 import kds_dayacore.composeapp.generated.resources.Poppins_Black
 import kds_dayacore.composeapp.generated.resources.Poppins_BlackItalic
 import kds_dayacore.composeapp.generated.resources.Poppins_Bold
@@ -27,6 +26,7 @@ import kds_dayacore.composeapp.generated.resources.Poppins_SemiBoldItalic
 import kds_dayacore.composeapp.generated.resources.Poppins_Thin
 import kds_dayacore.composeapp.generated.resources.Poppins_ThinItalic
 import kds_dayacore.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.Font
 
 // Set of Material typography styles to start with
 @Composable
