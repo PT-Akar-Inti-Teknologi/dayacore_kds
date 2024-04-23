@@ -1,3 +1,4 @@
-[submodule "core"]
-	path = core
+[submodule "composeCore"]
+	path = composeCore
 	url = https://github.com/PT-Akar-Inti-Teknologi/dayacore_pos_kds_assets.git
+	branch = development

@@ -1,5 +1,6 @@
 rootProject.name = "KDS-DayaCore"
-include(":core")
+include(":composeCore:core")
+include(":composeCore:libs:keyboardLib")
 include(":composeApp")
 
 pluginManagement {
