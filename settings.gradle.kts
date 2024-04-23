@@ -12,6 +12,11 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("composeCore/libs.versions.toml"))
+        }
+    }
     repositories {
         google()
         mavenCentral()
