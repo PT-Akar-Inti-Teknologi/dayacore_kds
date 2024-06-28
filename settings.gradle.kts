@@ -20,5 +20,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Desktop target has to add this repo
+        maven(url = uri(path = "https://jogamp.org/deployment/maven"))
     }
 }

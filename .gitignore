@@ -15,3 +15,8 @@ Pods/
 *.jks
 *yarn.lock
 *.db
+
+composeApp/cache
+composeApp/DawnCache
+composeApp/GPUCache
+composeApp/kcef-bundle
