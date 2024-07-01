@@ -1,5 +1,7 @@
 package app.dayacore.kds.presentation.webview
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LinearProgressIndicator
@@ -7,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import app.dayacore.core.composables.label.CustomText
 import app.dayacore.core.utils.StateScreenWrapper
+import app.dayacore.kds.core.dummy.HtmlRes
 import app.dayacore.kds.core.jsbridge.KdsSettingsGetJsMessageHandler
 import app.dayacore.kds.core.jsbridge.KdsSettingsSaveJsMessageHandler
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
@@ -23,6 +27,7 @@ import com.multiplatform.webview.web.LoadingState
 import com.multiplatform.webview.web.WebView
 import com.multiplatform.webview.web.rememberWebViewNavigator
 import com.multiplatform.webview.web.rememberWebViewState
+import com.multiplatform.webview.web.rememberWebViewStateWithHTMLData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -70,8 +75,8 @@ class WebViewScreen : Screen {
     private fun WebViewView(
         state: WebViewState,
     ) {
-        val webViewState = rememberWebViewState(url = state.urlToLoad)
-//        val webViewState = rememberWebViewStateWithHTMLData(data = HtmlRes.html)
+//        val webViewState = rememberWebViewState(url = state.urlToLoad)
+        val webViewState = rememberWebViewStateWithHTMLData(data = HtmlRes.html)
         val navigator = rememberWebViewNavigator()
         val jsBridge = rememberWebViewJsBridge(navigator)
 
@@ -95,12 +100,25 @@ class WebViewScreen : Screen {
             )
         }
 
-        WebView(
-            state = webViewState,
-            modifier = Modifier.fillMaxSize(),
-            navigator = navigator,
-            webViewJsBridge = jsBridge
-        )
+        Row(modifier = Modifier.fillMaxSize()) {
+            if (state.kdsSettingLog.isNotEmpty()) {
+                CustomText(
+                    text = state.kdsSettingLog,
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                )
+            }
+            WebView(
+                state = webViewState,
+                modifier = Modifier
+                    .weight(2f)
+                    .fillMaxHeight()
+                ,
+                navigator = navigator,
+                webViewJsBridge = jsBridge
+            )
+        }
     }
 
     private fun initWebView(webViewState: com.multiplatform.webview.web.WebViewState) {

@@ -5,4 +5,5 @@ import app.dayacore.core.utils.Empty
 
 data class WebViewState(
     val urlToLoad: String = String.Empty,
+    val kdsSettingLog: String = String.Empty,
 ) : UiState
