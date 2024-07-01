@@ -10,7 +10,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyShortcut
 import androidx.compose.ui.window.ApplicationScope
+import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
@@ -20,6 +23,8 @@ import app.dayacore.di.db.usecase.DBKdsUseCaseModule
 import app.dayacore.di.startKoinWithShared
 import app.dayacore.kds.App
 import app.dayacore.kds.di.EventBusModule
+import app.dayacore.kds.presentation.config.ConfigScreen
+import cafe.adriel.voyager.core.screen.Screen
 import dev.datlag.kcef.KCEF
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -44,14 +49,29 @@ fun main() = application {
 
 @Composable
 private fun ApplicationScope.initWindow() {
+    var newScreen by remember { mutableStateOf<Screen?>(null) }
+
     Window(
         title = "KDS DayaCore",
         state = rememberWindowState(placement = WindowPlacement.Floating),
         resizable = true,
         onCloseRequest = ::exitApplication
     ) {
+        MenuBar {
+            Menu(text = "Menu", mnemonic = 'M') {
+                Item(
+                    text = "Open Config",
+                    onClick = {
+                        newScreen = ConfigScreen(isEditConfig = true)
+                    },
+                    shortcut = KeyShortcut(
+                        Key.C, ctrl = true
+                    )
+                )
+            }
+        }
         jvmMainBuilder {
-            App()
+            App(newScreen = newScreen)
         }
     }
 }
