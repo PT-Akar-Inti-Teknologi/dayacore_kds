@@ -16,7 +16,7 @@ class ConfigViewModel : BaseViewModel<ConfigState, ConfigEvent>(ConfigState()) {
     fun onIntent(intent: ConfigIntent) {
         when (intent) {
             is ConfigIntent.DoLoadInit ->
-                doLoadInit()
+                doLoadInit(isEditConfig = intent.isEditConfig)
 
             is ConfigIntent.DoUrlToLoadChanged ->
                 // update state
@@ -27,12 +27,12 @@ class ConfigViewModel : BaseViewModel<ConfigState, ConfigEvent>(ConfigState()) {
         }
     }
 
-    private fun doLoadInit() = screenModelScope.launch {
+    private fun doLoadInit(isEditConfig: Boolean) = screenModelScope.launch {
         // get kds setting from preference
         val urlToLoad = kdsSettingsGetUrlToLoadUseCase.execute()
         // validate ui
         println("doLoadInit-urlToLoad : $urlToLoad")
-        if (urlToLoad.isNotEmpty()) {
+        if (isEditConfig.not() && urlToLoad.isNotEmpty()) {
             // send event
             sendEvent(event = ConfigEvent.OnDirectWebView)
             return@launch

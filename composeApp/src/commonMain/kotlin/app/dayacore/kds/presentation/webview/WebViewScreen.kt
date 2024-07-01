@@ -8,7 +8,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import app.dayacore.core.utils.StateScreenWrapper
-import app.dayacore.kds.core.dummy.HtmlRes
 import app.dayacore.kds.core.jsbridge.KdsSettingsGetJsMessageHandler
 import app.dayacore.kds.core.jsbridge.KdsSettingsSaveJsMessageHandler
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
@@ -23,7 +22,7 @@ import com.multiplatform.webview.util.KLogSeverity
 import com.multiplatform.webview.web.LoadingState
 import com.multiplatform.webview.web.WebView
 import com.multiplatform.webview.web.rememberWebViewNavigator
-import com.multiplatform.webview.web.rememberWebViewStateWithHTMLData
+import com.multiplatform.webview.web.rememberWebViewState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -62,7 +61,6 @@ class WebViewScreen : Screen {
 
                 WebViewView(
                     state = state,
-                    intent = actionIntent
                 )
             }
         )
@@ -71,10 +69,9 @@ class WebViewScreen : Screen {
     @Composable
     private fun WebViewView(
         state: WebViewState,
-        intent: (WebViewIntent) -> Unit,
     ) {
-//        val webViewState = rememberWebViewState(url = state.urlToLoad)
-        val webViewState = rememberWebViewStateWithHTMLData(data = HtmlRes.html)
+        val webViewState = rememberWebViewState(url = state.urlToLoad)
+//        val webViewState = rememberWebViewStateWithHTMLData(data = HtmlRes.html)
         val navigator = rememberWebViewNavigator()
         val jsBridge = rememberWebViewJsBridge(navigator)
 

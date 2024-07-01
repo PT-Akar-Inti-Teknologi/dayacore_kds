@@ -26,7 +26,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.launch
 
-class ConfigScreen : Screen {
+class ConfigScreen(private val isEditConfig: Boolean = false) : Screen {
 
     override val key: ScreenKey = "ConfigScreen"
 
@@ -55,7 +55,7 @@ class ConfigScreen : Screen {
 
                 LifecycleEffect(
                     onStarted = {
-                        actionIntent.invoke(ConfigIntent.DoLoadInit)
+                        actionIntent.invoke(ConfigIntent.DoLoadInit(isEditConfig = isEditConfig))
                     }
                 )
 
